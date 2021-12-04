@@ -1,7 +1,15 @@
-FROM golang:1.16-alpine
+FROM golang:latest as builder
 
 WORKDIR /app
 
-COPY . .
+COPY ./math.go .
 
-CMD ["go", "run", "math.go"]
+RUN go build math.go
+
+FROM scratch
+
+WORKDIR /app
+
+COPY --from=builder /app/math /app
+
+CMD ["./math"]
