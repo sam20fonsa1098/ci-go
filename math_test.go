@@ -1,7 +1,6 @@
 package main
 
 import "testing"
-import "./math"
 
 func TestSum(t *testing.T) {
 	total := Sum(5, 5)
